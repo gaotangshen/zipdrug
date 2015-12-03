@@ -2,26 +2,47 @@
 	function __autoload($class_name) {
 	    include 'controller/'.$class_name . '.class.php';
 	}
-	if(isset($_POST['email']) && isset($_POST['password'])){
-		$user = new User;
-		$user->register($_POST);
+	include('router.php');
+    $action_alias = str_replace('/Zipdrug/','',$_SERVER['REQUEST_URI']);
+	$q = explode('/', $action_alias);
+	if(empty($q[0])){
+		$module = 'user';
+		$component = 'signup';
+	}else{
+		$module = $q[0];
+		$component = $q[1];
 	}
+	$login = false;
 	if(isset($_COOKIE['username']) &&isset($_COOKIE['password']) ){
 		$login = true;
-		// header("Location: http://localhost/Zipdrug/views/home.php"); /* Redirect browser */
-		// exit();
 	}
-?>
-	<?php require_once(__DIR__.'\views\head.php');?>
-
-  	<?php 
-  		if($login==true){
-  			require_once(__DIR__.'\views\home.php');
-  		}else{
-  			require_once(__DIR__.'\views\signup.php');
-  		}
+	// if(isset($model[$module][$component])){
+	// 	include(__DIR__.'/models/'.$model[$module][$component]);
+	// }
+	/**
+	*take care of form post here.
+	*/
+	if($_POST && $action[$module][$component]){
+		$a = $action[$module][$component];
+		$error = call_user_func_array($a[0],$a[1]);
+	}
+	if( isset($action[$module][$component]['no_post'] )){
+		$a = $action[$module][$component]['no_post'];
+		call_user_func($a[0]);
+	}
+	/**
+	* render templates
+	*/
+ 	include(__DIR__.'\views\head.php');
+ 	if(isset($error)){
+ 		print '<div class="alert alert-danger">
+				  <strong>Error!</strong>'.$error.'
+				</div>';
+ 	}
+	if($login==false && $component!='login'){
+		include(__DIR__.'\views\signup.php');
+	}else{
+		include(__DIR__.'\views\\'.$page[$module][$component]['body']);
+	}
   	 
-  	?>
-  	<?php require_once(__DIR__.'\views\foot.php'); 
-  	?>
-<!-- Warning: require_once(C:\wamp\www\Zipdrug\views\singup.html): failed to open stream: No such file or directory -->
+  	 include(__DIR__.'\views\foot.php'); 

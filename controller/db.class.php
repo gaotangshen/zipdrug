@@ -1,11 +1,11 @@
 <?php
-class DB extends PDO{
+class DB{
 	private $host;
 	private $dbname;
 	private $user;
 	private $password;
 	private $dsn;
-	private $dbh;
+	public $dbh;
 	/**
 	*start connection
 	*/
