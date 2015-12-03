@@ -1,8 +1,14 @@
 <?php
+	/**
+	*load class when need.
+	*/
 	function __autoload($class_name) {
 	    include 'controller/'.$class_name . '.class.php';
 	}
 	include('router.php');
+	/**
+	*parse uri;
+	*/
     $action_alias = str_replace('/Zipdrug/','',$_SERVER['REQUEST_URI']);
 	$q = explode('/', $action_alias);
 	if(empty($q[0])){
@@ -12,6 +18,7 @@
 		$module = $q[0];
 		$component = $q[1];
 	}
+	
 	$login = false;
 	if(isset($_COOKIE['username']) &&isset($_COOKIE['password']) ){
 		$login = true;
