@@ -20,7 +20,7 @@
 	// 	include(__DIR__.'/models/'.$model[$module][$component]);
 	// }
 	/**
-	*take care of form post here.
+	*take care of form post here. call back.
 	*/
 	if($_POST && $action[$module][$component]){
 		$a = $action[$module][$component];

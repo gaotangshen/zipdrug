@@ -1,4 +1,7 @@
 <?php
+/**
+*register actions and page route.
+*/
 $page =  array();
 $action = array();
 
