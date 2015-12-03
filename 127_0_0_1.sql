@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2015 at 05:40 AM
+-- Generation Time: Dec 03, 2015 at 05:43 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -49,6 +49,20 @@ INSERT INTO `blogs` (`blogid`, `username`, `content`, `date`, `published`, `titl
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `follows`
+--
+
+CREATE TABLE IF NOT EXISTS `follows` (
+  `followid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `following` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL,
+  PRIMARY KEY (`followid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -69,6 +83,24 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`userid`, `username`, `password`, `status`) VALUES
 (6, 'gaotangshen@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1),
 (18, 'gaotang@charged.fm', '827ccb0eea8a706c4c34a16891f84e7b', 1);
+--
+-- Database: `zipdrug`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `userid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL,
+  PRIMARY KEY (`userid`),
+  KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
