@@ -1,3 +1,17 @@
  body {
     padding-top: 70px;
   }
+  .dropdown-header, .dropdown-item {
+    display: block;
+    padding: 3px 20px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+  .dropdown-item {
+    width: 100%;
+    font-weight: 400;
+    color: #373a3c;
+    text-align: inherit;
+    background: 0 0;
+    border: 0;
+}

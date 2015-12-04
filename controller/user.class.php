@@ -50,6 +50,44 @@ class User{
 		}
 
 	}
+	function follow($data){
+		$stmt = $this->conn->dbh->prepare("insert into follows(username, following, status) values(:username,:following,:status)");
+		$stmt->bindParam(':username', $email);
+		$stmt->bindParam(':following', $following);
+		$stmt->bindParam(':status', $status);
+		$email = $_COOKIE['username'];
+		$following = $data['username'];
+		$status = 1;
+		$stmt->execute();
+		header("Location: http://localhost/Zipdrug/user/home"); /* Redirect browser */
+		exit();
+	}
+	function unfollow($data){
+		$stmt = $this->conn->dbh->prepare("update follows set status=:status where username=:username and following=:following and status=1");
+		$stmt->bindParam(':username', $email);
+		$stmt->bindParam(':following', $following);
+		$stmt->bindParam(':status', $status);
+		$email = $_COOKIE['username'];
+		$following = $data['username'];
+		$status = 0;
+		$stmt->execute();
+		header("Location: http://localhost/Zipdrug/user/home"); /* Redirect browser */
+		exit();
+	}
+	function follower($data){
+		$follows = array();
+		$stmt = $this->conn->dbh->prepare("select * from follows where username=:username and status=:status");
+		$stmt->bindParam(':username', $email);
+		$stmt->bindParam(':status', $status);
+		$email = $_COOKIE['username'];
+		$status = 1;
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		foreach ($result as $key => $value) {
+			$follows[$value['following']] = true;
+		}
+		return $follows;
+	}
 	function signout(){
 		setcookie("username", $email, time()-3600,'/');
 		setcookie("password", $password, time()-3600,'/');

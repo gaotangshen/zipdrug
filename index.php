@@ -9,7 +9,9 @@
 	/**
 	*parse uri;
 	*/
-    $action_alias = str_replace('/Zipdrug/','',$_SERVER['REQUEST_URI']);
+	$uri = parse_url($_SERVER['REQUEST_URI']);
+	// preg_match('/.*+\/?/', $uri, $matches);
+    $action_alias = str_replace('/Zipdrug/','',$uri['path']);
 	$q = explode('/', $action_alias);
 	if(empty($q[0])){
 		$module = 'user';

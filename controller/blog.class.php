@@ -49,4 +49,26 @@ Class Blog{
 		}
 		return $blogs;
 	}
+	function blogFromFollower($user){
+		$blogs = array();
+		$stmt = $this->conn->dbh->prepare("select blogs.* 
+											from blogs 
+											join follows on blogs.username=follows.following
+											where published = 1 and follows.username=:username and follows.status=1
+											order by date desc");
+		$stmt->bindParam(':username', $username);
+		$username = $user;
+		$stmt->execute();
+		$result = $stmt->fetchAll();
+		foreach ($result as $key => $value) {
+			$blogs[$key]['blogid'] = $value['blogid'];
+			$blogs[$key]['username'] = $value['username'];
+			$blogs[$key]['content'] = $value['content'];
+			$blogs[$key]['date'] = $value['date'];
+			$blogs[$key]['title'] = $value['title'];
+			$blogs[$key]['file'] = $value['file'];
+		}
+		return $blogs;
+	}
+
 }

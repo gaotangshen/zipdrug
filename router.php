@@ -14,6 +14,8 @@ $user = new User();
 
 $action['user']['signup'] = array(array($user,'register'),array($_POST));
 $action['user']['login'] = array(array($user,'login'),array($_POST));
+$action['user']['follow'] = array(array($user,'follow'),array($_POST));
+$action['user']['unfollow'] = array(array($user,'unfollow'),array($_POST));
 $action['user']['signout']['no_post'] = array(array($user,'signout'));
 
 $blog = new Blog();
