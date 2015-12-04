@@ -10,3 +10,5 @@ https://cloud.githubusercontent.com/assets/5387225/11551928/0dde4d54-994c-11e5-8
 https://cloud.githubusercontent.com/assets/5387225/11551938/2dfdfba2-994c-11e5-9391-31a298625cfe.PNG
 <p>follow:</p>
 https://cloud.githubusercontent.com/assets/5387225/11582676/a0520c1a-9a1f-11e5-901e-8fdd003937d9.PNG
+<p>unfollow:</p>
+https://cloud.githubusercontent.com/assets/5387225/11582678/a2a553dc-9a1f-11e5-80d7-653a71ba95db.PNG
